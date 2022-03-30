@@ -1,0 +1,22 @@
+// console.log(
+//   "Nome:",
+//   dados.nome,
+//   "Stamina: ",
+//   dados.stamina,
+//   "Conceito: ",
+//   dados.conceito,
+//   "Popularidade: ",
+//   dados.popularidade
+// );
+// dados.adicionastamina();
+// dados.adicionastamina();
+// console.log(
+//  "Nome:",
+//   dados.nome,
+//   "Stamina: ",
+//   dados.stamina,
+//   "Conceito: ",
+//   dados.conceito,
+//   "Popularidade: ",
+//   dados.popularidade
+// );
