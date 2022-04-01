@@ -4,6 +4,10 @@ let continuar = "";
 let jogador = prompt("Digite seu nome:");
 let escolha = "";
 let treino;
+let treinocoletivo = [
+  "1)Tentar jogar o máximo que der, para aparecer bem para o técnico. Mas o risco de lesão existe.",
+  "2)Tenta jogar mais para o time e fazer a parte tatica corretamente, sem riscos.",
+];
 // Funçao para controlar a hora
 function avancahora(hora, horapassada) {
   hora = hora + horapassada;
@@ -236,9 +240,14 @@ while (continuar != "sair") {
       }
     }
   } else {
-    console.log(`Aqui você tem duas opções de treino coletivo:
-    1)Tentar jogar o máximo que der, para aparecer bem para o técnico. Mas o risco de lesão existe.
-    2)Tenta jogar mais para o time e fazer a parte tatica corretamente, sem riscos.`);
+    // console.log(`Aqui você tem duas opções de treino coletivo:
+    // 1)Tentar jogar o máximo que der, para aparecer bem para o técnico. Mas o risco de lesão existe.
+    // 2)Tenta jogar mais para o time e fazer a parte tatica corretamente, sem riscos.`);
+    console.log(
+      `Digite qual treino coletivo você deseja:
+      ${treinocoletivo[0]}
+      ${treinocoletivo[1]}`
+    );
     escolha = escolher2();
     if (escolha == 1) {
       treino = Math.floor(Math.random() * 101);
@@ -337,6 +346,21 @@ while (continuar != "sair") {
     }
   }
   console.log();
+  informaçoes(
+    hora,
+    dados.nome,
+    dados.stamina,
+    dados.forca,
+    dados.conceito,
+    dados.popularidade,
+    dia
+  );
+  console.log();
+  console.log(`Agora você está pronto para decidir qual será o seu treino a tarde:
+  1) Academia
+  2) Força
+  3) Descanso`);
+  escolher();
   console.log(
     `Para continuar jogando e ir para o dia seguinte aperte qualquer tecla, para parar de jogar, escreva sair: `
   );
