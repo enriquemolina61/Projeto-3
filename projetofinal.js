@@ -37,8 +37,8 @@ function avancahora(hora, horapassada) {
 //Obejto que contem todas as informaçoes do jogador
 const dados = {
   nome: jogador,
-  stamina: 8,
-  forca: 2,
+  stamina: 5,
+  forca: 5,
   conceito: 2,
   popularidade: 1,
   adicionastamina: function () {
@@ -100,7 +100,7 @@ function aperte() {
 }
 
 //INICIO
-let dia = 7;
+let dia = 1;
 continuar = "sim";
 while (continuar != "sair") {
   console.clear();
@@ -116,8 +116,8 @@ while (continuar != "sair") {
   );
   if (dia % 7 == 0) {
     console.log(`Hoje é dia de jogo!`);
-    convocado = 40; //Math.floor(Math.random() * 101);
-    if (convocado < 50 && dados.conceito > 5 && dados.forca>4) {
+    convocado = 55; //Math.floor(Math.random() * 101);
+    if (convocado < 50 && dados.conceito > 5 && dados.forca > 10) {
       console.log(`Você foi convocado!`);
       aperte();
       console.log(`O jogo vai começar!`);
@@ -125,14 +125,18 @@ while (continuar != "sair") {
       console.log(`Apita o árbitro, começa o jogo!`);
       for (let k = 10; k < 91; k += 10) {
         console.log(`Estamos com ${k} minutos de jogo. Você escolhe qual jogada:
-        1) Tentar chutar para fazer um gol. Lembrando que isso te custa stamina, mas se for gol, você ganha popularidade.
-        2) Tenta realizar assitência para o gol, onde você ganha conceito com seu treinador!
-        3) Tenta não correr muito para não se desgastar muito e recuperar um pouco de stamina!`);
+        1) Tentar chutar para fazer um gol. Lembrando que isso te custa stamina, mas se for gol, você ganha popularidade. Você precisa ter 5 pontos de conceito e 10 de força!
+        2) Tenta não correr muito para não se desgastar muito e recuperar um pouco de stamina! Você precisa ter 5 pontos de força!
+        3) Tenta realizar assitência para o gol, onde você ganha conceito com seu treinador! Você precisa ter 10 pontos de força!
+        `);
         escolha = escolher();
-        if (escolha == 1 && dados.stamina > 10 && dados.forca > 5) {
+
+        if (escolha == 1 && dados.stamina > 10 && dados.forca > 10) {
           jogadas = Math.floor(Math.random() * 101);
-          if (jogadas >= 50) {
-            console.log(`gol ao ${k}minutos! Você ganha popularidade!`);
+          if (jogadas >= 40) {
+            console.log(
+              `Gol ao ${k}minutos! Você ganha popularidade! (-2 de stamina e +1 popularidade)`
+            );
             dados.adicionapopularidade();
             dados.diminuistamina();
             dados.diminuistamina();
@@ -142,8 +146,71 @@ while (continuar != "sair") {
           Popularidade:${dados.popularidade}`);
             aperte();
           } else {
-            console.log(`O chute vai pra fora! Segue o jogo!`);
+            console.log(
+              `O chute vai pra fora! Segue o jogo! (-3 de força e -2 de stamina)`
+            );
             dados.diminuistamina();
+            dados.diminuistamina();
+            dados.diminuiforca();
+            dados.diminuiforca();
+            dados.diminuiforca();
+            console.log(`Informaçoes do jogador:
+          Forca: ${dados.forca}
+          Stamina:${dados.stamina}
+          Popularidade:${dados.popularidade}`);
+            aperte();
+          }
+        } else if (escolha == 2 && dados.forca > 5) {
+          jogadas = Math.floor(Math.random() * 101);
+          if (jogadas >= 50) {
+            console.log(
+              `Você consegue passar um tempo sem correr muito e recupera 2 pontos de stamina! (+2 stamina)`
+            );
+            dados.adicionastamina();
+            dados.adicionastamina();
+            console.log(`Informaçoes do jogador:
+          Forca: ${dados.forca}
+          Stamina:${dados.stamina}
+          Popularidade:${dados.popularidade}`);
+            aperte();
+          } else {
+            console.log(
+              `A sua tentativa de recuperar stamina acaba fazendo o time levar um gol.(-2 conceito, -1 stamina e -2 força)`
+            );
+            dados.diminuistamina();
+            dados.diminuiforca();
+            dados.diminuiforca();
+            dados.diminuiconceito();
+            dados.diminuiconceito();
+            console.log(`Informaçoes do jogador:
+          Forca: ${dados.forca}
+          Stamina:${dados.stamina}
+          Popularidade:${dados.popularidade}`);
+            aperte();
+          }
+        } else if (escolha == 3 && dados.forca > 10) {
+          jogadas = Math.floor(Math.random() * 101);
+          if (jogadas >= 50) {
+            console.log(
+              `Excelente passe para gol ao ${k} minutos! Você ganha conceito! (+1 conceito/-2 stamina)`
+            );
+            dados.adicionaconceito();
+            dados.diminuistamina();
+            dados.diminuistamina();
+            console.log(`Informaçoes do jogador:
+          Forca: ${dados.forca}
+          Stamina:${dados.stamina}
+          Popularidade:${dados.popularidade}`);
+            aperte();
+          } else {
+            console.log(
+              `O passe foi ruim! (-1 conceito/ -2 força / -2 stamina)`
+            );
+            dados.diminuistamina();
+            dados.diminuistamina();
+            dados.diminuiforca();
+            dados.diminuiforca();
+            dados.diminuiconceito();
             console.log(`Informaçoes do jogador:
           Forca: ${dados.forca}
           Stamina:${dados.stamina}
@@ -151,13 +218,28 @@ while (continuar != "sair") {
             aperte();
           }
         } else {
-          console.log(``);
+          console.log(
+            `Você não tem atributos suficiente para essa jogada! Você perde a bola para o adversário. (-2 conceito)`
+          );
+          dados.diminuiconceito();
+          dados.diminuiconceito();
         }
+      }
+      if (dados.popularidade > 19) {
+        console.log(
+          `Parabéns, você chegou ao final do jogo! Sua popularidade atingiu o valor de 20 pontos!`
+        );
+        break;
       }
     } else {
       console.log(
         `Você não foi convocado e tem o dia para recuperar sua stamina mas perde popularidade! Mais 5 pontos de stamina!`
       );
+      dados.adicionastamina();
+      dados.adicionastamina();
+      dados.adicionastamina();
+      dados.adicionastamina();
+      dados.adicionastamina();
       if (dados.popularidade > 0) {
         dados.diminuipopularidade();
       }
@@ -170,15 +252,16 @@ while (continuar != "sair") {
   } else {
     console.log();
     console.log(`São ${hora}h do dia ${dia}. Você acaba de acordar e precisa decidir o que vai fazer a partir de agora. Você tem 3 opções:);
-1) Tomar Café e assistir tv. -> Stamina +1
-2) Dormir mais um pouco e tomar um café rápdio. -> Stamina +2 / Força -1
-3)Levantar tomar um café rápido e fazer exercícios. -> Stamina -1/ Força +2`);
+1) Tomar café e assistir tv. -> (Stamina +1)
+2) Dormir mais um pouco e tomar um café rápido. -> (Stamina +2 / Força -2)
+3) Levantar tomar um café rápido e fazer exercícios. -> (Stamina -1/ Força +1)`);
     escolha = escolher();
     if (escolha == 1) {
       dados.adicionastamina();
     } else if (escolha == 2) {
       dados.adicionastamina();
       dados.adicionastamina();
+      dados.diminuiforca();
       dados.diminuiforca();
     } else {
       dados.diminuistamina();
@@ -255,9 +338,9 @@ while (continuar != "sair") {
       escolha = escolher2();
       if (escolha == 1) {
         treino = Math.floor(Math.random() * 101);
-        if (treino < 10) {
+        if (treino < 15) {
           console.log(`Você tentou se destacar no treino,
-    mas infelizmente acabou sentindo uma lesão e não pode seguir no treinamento.
+    mas infelizmente acabou sentindo uma lesão e não pode seguir no dia de treinamento.
     Você acabou perdendo 4 pontos de stamina e 2 pontos de força`);
           dados.diminuistamina();
           dados.diminuistamina();
@@ -499,9 +582,17 @@ while (continuar != "sair") {
       dia
     );
     console.log(
-      `Fim do dia de treinamento, agora são ${hora}horas e você se dirige para sua casa.`
+      `Fim do dia de treinamento, agora são ${hora} horas e você se dirige para sua casa.`
     );
-
+    hora = avancahora(hora, 1);
+    console.log(
+      `São ${hora} horas. Você já chegou em casa após um longo dia de treino e vai descansar. Sua noite de descanso vai te render mais 4 pontos de stamina. `
+    );
+    dados.adicionastamina();
+    dados.adicionastamina();
+    dados.adicionastamina();
+    dados.adicionastamina();
+    aperte();
     console.log(
       `Para continuar jogando e ir para o dia seguinte aperte qualquer tecla, para parar de jogar, escreva sair: `
     );
@@ -509,4 +600,3 @@ while (continuar != "sair") {
     dia++;
   }
 }
-console.clear();
