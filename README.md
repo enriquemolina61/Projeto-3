@@ -43,7 +43,7 @@ Onde tambem, jogando, você irá descobrir o que cada um pode fazer.
 Com o fim do seu dia, irá se iniciar o proximo.
 
 E a parte mais importante é a convocação para o dia de jogo.
-Após cada 6 dias de treinamentos, há a convocação para o dia de jogo, que é onde você pode adquirir a tão sonhada popularidade.
+Após cada 3 dias de treinamentos, há a convocação para o dia de jogo, que é onde você pode adquirir a tão sonhada popularidade.
 Durante a partida, você terá algumas chances de realizar as suas jogadas e terá 3 opções de jogadas:
  1) Tentar chutar para fazer um gol. Lembrando que isso te custa stamina, mas se for gol, você ganha popularidade. Você precisa ter 5 pontos de conceito e 10 de força!
  2) Tenta não correr muito para não se desgastar muito e recuperar um pouco de stamina! Você precisa ter 5 pontos de força!
