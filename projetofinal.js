@@ -1,3 +1,4 @@
+//Instruções do jogo estão no readme.md, presente no respositorio git
 const prompt = require("prompt-sync")();
 console.clear();
 let continuar = "";
@@ -40,7 +41,7 @@ const dados = {
   stamina: 5,
   forca: 5,
   conceito: 2,
-  popularidade: 1,
+  popularidade: 0,
   adicionastamina: function () {
     this.stamina++;
   },
@@ -114,10 +115,10 @@ while (continuar != "sair") {
     dados.popularidade,
     dia
   );
-  if (dia % 7 == 0) {
+  if (dia % 4 == 0) {
     console.log(`Hoje é dia de jogo!`);
-    convocado = 55; //Math.floor(Math.random() * 101);
-    if (convocado < 50 && dados.conceito > 5 && dados.forca > 10) {
+    convocado = Math.floor(Math.random() * 101);
+    if (convocado < 60 && dados.conceito > 5 && dados.forca > 10) {
       console.log(`Você foi convocado!`);
       aperte();
       console.log(`O jogo vai começar!`);
@@ -133,7 +134,9 @@ while (continuar != "sair") {
 
         if (escolha == 1 && dados.stamina > 10 && dados.forca > 10) {
           jogadas = Math.floor(Math.random() * 101);
+          console.clear();
           if (jogadas >= 40) {
+            console.log(``);
             console.log(
               `Gol ao ${k}minutos! Você ganha popularidade! (-2 de stamina e +1 popularidade)`
             );
@@ -144,8 +147,10 @@ while (continuar != "sair") {
           Forca: ${dados.forca}
           Stamina:${dados.stamina}
           Popularidade:${dados.popularidade}`);
+            console.log(``);
             aperte();
           } else {
+            console.log(``);
             console.log(
               `O chute vai pra fora! Segue o jogo! (-3 de força e -2 de stamina)`
             );
@@ -158,11 +163,14 @@ while (continuar != "sair") {
           Forca: ${dados.forca}
           Stamina:${dados.stamina}
           Popularidade:${dados.popularidade}`);
+            console.log(``);
             aperte();
           }
         } else if (escolha == 2 && dados.forca > 5) {
           jogadas = Math.floor(Math.random() * 101);
+          console.clear();
           if (jogadas >= 50) {
+            console.log(``);
             console.log(
               `Você consegue passar um tempo sem correr muito e recupera 2 pontos de stamina! (+2 stamina)`
             );
@@ -172,13 +180,14 @@ while (continuar != "sair") {
           Forca: ${dados.forca}
           Stamina:${dados.stamina}
           Popularidade:${dados.popularidade}`);
+            console.log(``);
             aperte();
           } else {
+            console.log(``);
             console.log(
-              `A sua tentativa de recuperar stamina acaba fazendo o time levar um gol.(-2 conceito, -1 stamina e -2 força)`
+              `A sua tentativa de recuperar stamina acaba fazendo o time levar um gol.(-2 conceito, -1 stamina e -1 força)`
             );
             dados.diminuistamina();
-            dados.diminuiforca();
             dados.diminuiforca();
             dados.diminuiconceito();
             dados.diminuiconceito();
@@ -186,10 +195,12 @@ while (continuar != "sair") {
           Forca: ${dados.forca}
           Stamina:${dados.stamina}
           Popularidade:${dados.popularidade}`);
+            console.log(``);
             aperte();
           }
         } else if (escolha == 3 && dados.forca > 10) {
           jogadas = Math.floor(Math.random() * 101);
+          console.clear();
           if (jogadas >= 50) {
             console.log(
               `Excelente passe para gol ao ${k} minutos! Você ganha conceito! (+1 conceito/-2 stamina)`
@@ -197,12 +208,15 @@ while (continuar != "sair") {
             dados.adicionaconceito();
             dados.diminuistamina();
             dados.diminuistamina();
+            console.log(``);
             console.log(`Informaçoes do jogador:
           Forca: ${dados.forca}
           Stamina:${dados.stamina}
           Popularidade:${dados.popularidade}`);
+            console.log(``);
             aperte();
           } else {
+            console.log(``);
             console.log(
               `O passe foi ruim! (-1 conceito/ -2 força / -2 stamina)`
             );
@@ -211,10 +225,12 @@ while (continuar != "sair") {
             dados.diminuiforca();
             dados.diminuiforca();
             dados.diminuiconceito();
+            console.log(``);
             console.log(`Informaçoes do jogador:
           Forca: ${dados.forca}
           Stamina:${dados.stamina}
           Popularidade:${dados.popularidade}`);
+            console.log(``);
             aperte();
           }
         } else {
@@ -225,6 +241,9 @@ while (continuar != "sair") {
           dados.diminuiconceito();
         }
       }
+      console.log(``);
+      console.log(`Fim de jogo!`);
+      console.log(``);
       if (dados.popularidade > 19) {
         console.log(
           `Parabéns, você chegou ao final do jogo! Sua popularidade atingiu o valor de 20 pontos!`
@@ -320,6 +339,15 @@ while (continuar != "sair") {
     console.log();
     aperte();
     console.clear();
+    informaçoes(
+      hora,
+      dados.nome,
+      dados.stamina,
+      dados.forca,
+      dados.conceito,
+      dados.popularidade,
+      dia
+    );
     console.log(`São ${hora}h, você acaba de chegar no clube para treinar e precisa decidir o qual treino vai realizar. Você tem 3 opções:);
 1) Treino Fisico
 2) Treino Tático
@@ -350,6 +378,7 @@ while (continuar != "sair") {
           dados.diminuiforca();
           console.log("Você irá para o próximo dia!");
           aperte();
+          dia++;
           continue;
         } else {
           console.log(`Você se destacou muito nesse treino, o treinador gostou bastante da sua dedicação.
