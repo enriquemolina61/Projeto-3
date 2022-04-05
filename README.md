@@ -15,6 +15,7 @@ Para cada ação que será tomada do seu dia, você poderá aumentar alguns atri
 exceto a popularidade, estejam bons.
 
 Todo dia pela manhã, você terá 3 opções para escolher como quer começar o dia, e cada uma delas irá afetar seus atributos de uma forma diferente:
+
 1)Tomar café e assistir tv. -> (Stamina +1)
 2) Dormir mais um pouco e tomar um café rápido. -> (Stamina +2 / Força -2)
 3) Levantar tomar um café rápido e fazer exercícios. -> (Stamina -1/ Força +1)
@@ -31,10 +32,12 @@ Logo após, você irá decidir qual treino você deseja realizar:
 Cada um deles tem sua peculiaridade , que você irá descobrir jogando.
 
 O almoço você tambem tem duas opções, entre:
+
 1)Almoço de acordo com a nutricionista do time, com isso você recupera pouco sua stamina mas ganha ponto de força.
 2)Prefere um almoço rápido, para ir descansar por mais tempo, sua stamina recupera o dobro, mas você não ganha força extra.
  
 Já na parte da tarde do treinamento, você tem mais 3 opções de treinos:
+
 1) Academia
 2) Força
 3) Descanso
